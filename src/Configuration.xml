@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<mappers>
+		<mapper resource="com/xjgzinfo/vo/UserVoMapper.xml" />
+		<mapper resource="com/xjgzinfo/vo/TFormMapper.xml" />
+		<mapper resource="com/xjgzinfo/vo/TQjdMapper.xml" />
+		<mapper resource="com/xjgzinfo/vo/TQjgcMapper.xml" />
+		<mapper resource="com/xjgzinfo/vo/activiti/Act_Re_ProcdefMapper.xml" />
+		<mapper resource="com/xjgzinfo/vo/TOrgUserMapper.xml" />
+		<mapper resource="com/xjgzinfo/vo/TRoleUserMapper.xml" />
+		<mapper resource="com/xjgzinfo/vo/TRoleMapper.xml" />
+		<mapper resource="com/xjgzinfo/vo/TOrgMapper.xml" />
+	</mappers>
+
+</configuration>

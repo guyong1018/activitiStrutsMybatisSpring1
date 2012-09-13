@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjgzinfo.vo.TOrgMapper">
+	<select id="getOrgRecursion" parameterType="string" resultType="com.xjgzinfo.organizational.OrgVo">
+		select t.groupid,t.group_name,t.up_groupid from t_group t where t.up_groupid=#{orgid}
+	</select>
+	
+	<select id="getOrgRoot" resultType="com.xjgzinfo.organizational.OrgVo">
+		select t.groupid,t.group_name,t.up_groupid from t_group t where t.up_groupid is null
+	</select>
+	
+	<select id="getOrgOrg" parameterType="string" resultType="com.xjgzinfo.organizational.OrgVo">
+		select t.groupid,t.group_name,t.up_groupid from t_group t where t.up_groupid=#{uporgid}
+	</select>
+	
+</mapper>

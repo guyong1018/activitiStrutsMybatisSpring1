@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjgzinfo.vo.activiti.Act_Re_ProcdefMapper">
+	<!-- 查询活动定义列表 -->
+	<select id="getProcessDefList" resultType="hashmap">
+		select p.id_                 as pdid,
+		       p.rev_                as rev,
+		       p.category_           as category,
+		       p.name_               as pname,
+		       p.key_                as pdkey,
+		       p.version_            version,
+		       p.deployment_id_      as deployment_id,
+		       p.resource_name_      as resource_name,
+		       p.dgrm_resource_name_ as dgrm_resource_name,
+		       d.deploy_time_        as deploy_time
+		  from act_re_procdef p, act_re_deployment d
+		 where p.deployment_id_ = d.id_ order by d.deploy_time_ desc
+	</select>
+</mapper>

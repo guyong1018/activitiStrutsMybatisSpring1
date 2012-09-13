@@ -1,0 +1,34 @@
+此工程技术路线为jquery+struts2+activiti5.10+mybatis3+spring3.0
+由于这些技术具体使用均为第一次，所以此工程中代码有些地方比较不规范，因为是demo工程，所以后面没有进行规范修改，见谅。
+
+代码包说明：
+com.xjgzinfo.action      struts的action包
+com.xjgzinfo.activiti    操作工作流引擎的接口包，方法都封装在ActivitiManager类中
+com.xjgzinfo.common      公用类
+com.xjgzinfo.example     示例中用到的监听器
+com.xjgzinfo.service     服务类
+com.xjgzinfo.vo          数据库vo对象
+com.xjgzinfo.test        测试类，没有用
+
+
+exampleFlow/exampleJsp   示例的jsp页面
+
+
+此工程环境说明：oracle11GXE、myeclipse10
+
+用户：test1/test2/test3/test4/test5   密码:8888
+
+----------------------------------如果环境不一致，有可能数据库表导入不全，如果自己部署流程，表单配置如下---------------------------------------------------
+example1:
+	usertask1:example_loadQjd
+	usertask2:example_loadQjd?type=update
+	usertask3:example_loadQjd
+	usertask4:example_loadQjd?type=update
+
+example2-example9的节点表单全部是:/exampleFlow/exampleJsp/exp2_fzptfz_complete.jsp
+
+example10:
+	usertask1:/exampleFlow/exampleJsp/exp2_fzptfz_complete.jsp
+	usertask2:/exampleFlow/exampleJsp/exp2_fzptfz_complete.jsp
+	usertask3:/exampleFlow/exampleJsp/exp2_fzptfz_complete.jsp
+	usertask4:/exampleFlow/exampleJsp/exp10_free_back_complete.jsp

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjgzinfo.vo.TFormMapper" >
+  <resultMap id="BaseResultMap" type="com.xjgzinfo.vo.TForm" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="ACT_ID" property="actId" jdbcType="OTHER" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="PROCESSDEFID" property="processdefid" jdbcType="OTHER" />
+    <result column="ACT_NAME" property="actName" jdbcType="OTHER" />
+    <result column="PROCESSDEFNAME" property="processdefname" jdbcType="OTHER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ACT_ID, URL, PROCESSDEFID, ACT_NAME, PROCESSDEFNAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xjgzinfo.vo.TFormExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_ACTIVITY_FORM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.xjgzinfo.vo.TFormExample" >
+    delete from T_ACTIVITY_FORM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xjgzinfo.vo.TForm" >
+  	<selectKey keyProperty="id" resultType="DECIMAL" order="BEFORE">
+        select SEQ_FORM.nextVal from dual
+    </selectKey>
+  
+    insert into T_ACTIVITY_FORM (ID, ACT_ID, URL, 
+      PROCESSDEFID, ACT_NAME, PROCESSDEFNAME
+      )
+    values (#{id,jdbcType=DECIMAL}, #{actId,jdbcType=OTHER}, #{url,jdbcType=VARCHAR}, 
+      #{processdefid,jdbcType=OTHER}, #{actName,jdbcType=OTHER}, #{processdefname,jdbcType=OTHER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xjgzinfo.vo.TForm" >
+    insert into T_ACTIVITY_FORM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="actId != null" >
+        ACT_ID,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="processdefid != null" >
+        PROCESSDEFID,
+      </if>
+      <if test="actName != null" >
+        ACT_NAME,
+      </if>
+      <if test="processdefname != null" >
+        PROCESSDEFNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="actId != null" >
+        #{actId,jdbcType=OTHER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="processdefid != null" >
+        #{processdefid,jdbcType=OTHER},
+      </if>
+      <if test="actName != null" >
+        #{actName,jdbcType=OTHER},
+      </if>
+      <if test="processdefname != null" >
+        #{processdefname,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xjgzinfo.vo.TFormExample" resultType="java.lang.Integer" >
+    select count(*) from T_ACTIVITY_FORM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_ACTIVITY_FORM
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.actId != null" >
+        ACT_ID = #{record.actId,jdbcType=OTHER},
+      </if>
+      <if test="record.url != null" >
+        URL = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.processdefid != null" >
+        PROCESSDEFID = #{record.processdefid,jdbcType=OTHER},
+      </if>
+      <if test="record.actName != null" >
+        ACT_NAME = #{record.actName,jdbcType=OTHER},
+      </if>
+      <if test="record.processdefname != null" >
+        PROCESSDEFNAME = #{record.processdefname,jdbcType=OTHER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_ACTIVITY_FORM
+    set ID = #{record.id,jdbcType=DECIMAL},
+      ACT_ID = #{record.actId,jdbcType=OTHER},
+      URL = #{record.url,jdbcType=VARCHAR},
+      PROCESSDEFID = #{record.processdefid,jdbcType=OTHER},
+      ACT_NAME = #{record.actName,jdbcType=OTHER},
+      PROCESSDEFNAME = #{record.processdefname,jdbcType=OTHER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

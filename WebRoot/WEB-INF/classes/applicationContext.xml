@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd  http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 数据源配置 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
+		<property name="username" value="activiti10" />
+		<property name="password" value="activiti10" />
+		<property name="initialSize" value="3" />
+		<property name="maxActive" value="1" />
+		<property name="maxIdle" value="5" />
+		<property name="minIdle" value="1" />
+	</bean>
+
+	<!-- 事务管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:advice id="TestAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="start*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="exampleServiceMethod"
+			expression="execution(* com.xjgzinfo.service.*.*(..)) or execution(*  com.xjgzinfo.activiti.ActivitiManager.*(..))" />
+		<aop:advisor pointcut-ref="exampleServiceMethod"
+			advice-ref="TestAdvice" />
+	</aop:config>
+	<!-- activiti工作流配置 -->
+	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		<property name="dataSource" ref="dataSource" />
+		<property name="transactionManager" ref="transactionManager" />
+		<!-- 数据库表结构检查，不一样自动更新 -->
+		<property name="databaseSchemaUpdate" value="false" />
+		<!-- 是否开启调度 -->
+		<property name="jobExecutorActivate" value="true" />
+		<!-- 邮件配置 -->
+		<property name="mailServerHost" value="smtp.qq.com" />
+		<property name="mailServerPort" value="25" />
+		<property name="mailServerUsername" value="78254562@qq.com" />
+		<property name="mailServerPassword" value="123" />
+		<property name="history" value="full" />
+	</bean>
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+
+	<bean id="repositoryService" factory-bean="processEngine"
+		factory-method="getRepositoryService" />
+	<bean id="runtimeService" factory-bean="processEngine"
+		factory-method="getRuntimeService" />
+	<bean id="taskService" factory-bean="processEngine"
+		factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine"
+		factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine"
+		factory-method="getManagementService" />
+	<bean id="formService" factory-bean="processEngine"
+		factory-method="getFormService" />
+	<bean id="identityService" factory-bean="processEngine"
+		factory-method="getIdentityService" />
+		
+	<!-- mybatis配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:Configuration.xml"></property>
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="tuserMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.xjgzinfo.vo.UserVoMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="formMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.xjgzinfo.vo.TFormMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="tqjdMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.xjgzinfo.vo.TQjdMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="tqjgcMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.xjgzinfo.vo.TQjgcMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="act_Re_ProcdefMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface"
+			value="com.xjgzinfo.vo.activiti.Act_Re_ProcdefMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="act_Ru_TaskMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.xjgzinfo.vo.activiti.Act_Ru_TaskMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="torguserMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.xjgzinfo.vo.TOrgUserMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="troleuserMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.xjgzinfo.vo.TRoleUserMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="torgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.xjgzinfo.vo.TOrgMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="troleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.xjgzinfo.vo.TRoleMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	
+	<!-- 业务对象配置 -->
+	<bean id="userService" class="com.xjgzinfo.service.UserServiceImp">
+		<property name="tuserMapper" ref="tuserMapper"></property>
+	</bean>
+
+	<bean id="loginAction" class="com.xjgzinfo.action.LoginAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+
+	<bean id="activitiManager" class="com.xjgzinfo.activiti.ActivitiManager">
+		<property name="repositoryService" ref="repositoryService"></property>
+		<property name="runtimeService" ref="runtimeService"></property>
+		<property name="taskService" ref="taskService"></property>
+		<property name="historyService" ref="historyService"></property>
+		<property name="managementService" ref="managementService"></property>
+		<property name="formService" ref="formService"></property>
+		<property name="identityService" ref="identityService"></property>
+		<property name="tuserMapper" ref="tuserMapper"></property>
+		<property name="participantService" ref="participantService"></property>
+	</bean>
+
+	<bean id="processDef" class="com.xjgzinfo.service.ProcessDefImp">
+		<property name="activitiManager" ref="activitiManager"></property>
+		<property name="act_Re_ProcdefMapper" ref="act_Re_ProcdefMapper"></property>
+	</bean>
+
+	<bean id="processDefListAction" class="com.xjgzinfo.action.ProcessDefListAction">
+		<property name="processDef" ref="processDef"></property>
+	</bean>
+
+	<bean id="activitiAction" class="com.xjgzinfo.action.ActivitiAction">
+		<property name="activitiService" ref="activitiService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="activitiService" class="com.xjgzinfo.service.ActivitiServiceImp">
+		<property name="activitiManager" ref="activitiManager"></property>
+		<property name="tformMapper" ref="formMapper"></property>
+		<property name="act_Ru_TaskMapper" ref="act_Ru_TaskMapper"></property>
+	</bean>
+	<bean id="exampleAction" class="com.xjgzinfo.action.ExampleAction">
+		<property name="exampleService" ref="exampleService"></property>
+		<property name="orgManagerService" ref="orgManagerService"></property>
+	</bean>
+	<bean id="exampleService" class="com.xjgzinfo.service.ExampleServiceImp">
+		<property name="tqjdMapper" ref="tqjdMapper"></property>
+		<property name="tqjgcMapper" ref="tqjgcMapper"></property>
+		<property name="activitiManager" ref="activitiManager"></property>
+	</bean>
+	<bean id="orgManagerService" class="com.xjgzinfo.organizational.OrgManagerServiceImpl">
+		<property name="torguserMapper" ref="torguserMapper"></property>
+		<property name="troleuserMapper" ref="troleuserMapper"></property>
+		<property name="torgMapper" ref="torgMapper"></property>
+		<property name="tuserMapper" ref="tuserMapper"></property>
+		<property name="troleMapper" ref="troleMapper"></property>
+	</bean>
+
+	<bean id="participantService" class="com.xjgzinfo.organizational.ParticipantServiceImpl">
+		<property name="orgManagerService" ref="orgManagerService"></property>
+	</bean>
+	
+	<bean id="deployAction" class="com.xjgzinfo.action.DeployAction">
+		<property name="activitiManager" ref="activitiManager"></property>
+	</bean>
+
+	<bean id="example6_javaInvoke2spring" class="com.xjgzinfo.example.Example6_javaInvoke2spring">
+	</bean>
+
+</beans>
