@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjgzinfo.vo.TOrgUserMapper">
+	<select id="getUsersByOrgid" resultType="com.xjgzinfo.organizational.UserVo">
+		select u.userid,u.name,u.username from t_user
+		u,t_group_user g where
+		g.userid=u.userid and g.groupid in
+		<foreach collection="list" item="orgids" open="(" separator=","
+			close=")">
+			#{orgids}
+		</foreach>
+	</select>
+	<select id="getOrgUser" parameterType="string"
+		resultType="com.xjgzinfo.organizational.UserVo">
+		select u.userid,u.name,u.username,u.password,u.groupid from
+		t_user u,t_group_user gu where u.userid=gu.userid and
+		gu.groupid=#{orgid}
+	</select>
+</mapper>

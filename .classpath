@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.lib.spring3.MYECLIPSE_SPRING30_CORE"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.lib.spring3.MYECLIPSE_SPRING30_Persistence_JDBC"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.lib.spring3.MYECLIPSE_SPRING30_Persistence_CORE"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.lib.spring3.MYECLIPSE_SPRING30_AOP"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.lib.spring3.MYECLIPSE_SPRING30_WEB"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.lib.spring3.MYECLIPSE_SPRING30_IBATIS"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mybatis-spring-1.1.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mybatis-3.1.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti-engine-examples.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ezmorph-1.0.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.struts2.MYECLIPSE_STRUTS21_CORE"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.struts2.MYECLIPSE_STRUTS21_SPRING"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-email-1.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mail-1.4.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti-cxf-5.10.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti-engine-5.10.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti-spring-5.10.jar"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>
