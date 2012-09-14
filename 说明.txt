@@ -1,31 +1,35 @@
-´Ë¹¤³Ì¼¼ÊõÂ·ÏßÎªjquery+struts2+activiti5.10+mybatis3+spring3.0
-ÓÉÓÚÕâĞ©¼¼Êõ¾ßÌåÊ¹ÓÃ¾ùÎªµÚÒ»´Î£¬ËùÒÔ´Ë¹¤³ÌÖĞ´úÂëÓĞĞ©µØ·½±È½Ï²»¹æ·¶£¬ÒòÎªÊÇdemo¹¤³Ì£¬ËùÒÔºóÃæÃ»ÓĞ½øĞĞ¹æ·¶ĞŞ¸Ä£¬¼ûÁÂ¡£
+æ­¤å·¥ç¨‹æŠ€æœ¯è·¯çº¿ä¸ºjquery+struts2+activiti5.10+mybatis3+spring3.0
+ç”±äºè¿™äº›æŠ€æœ¯å…·ä½“ä½¿ç”¨å‡ä¸ºç¬¬ä¸€æ¬¡ï¼Œæ‰€ä»¥æ­¤å·¥ç¨‹ä¸­ä»£ç æœ‰äº›åœ°æ–¹æ¯”è¾ƒä¸è§„èŒƒï¼Œå› ä¸ºæ˜¯demoå·¥ç¨‹ï¼Œæ‰€ä»¥åé¢æ²¡æœ‰è¿›è¡Œè§„èŒƒä¿®æ”¹ï¼Œè§è°…ã€‚
 
-´úÂë°üËµÃ÷£º
-com.xjgzinfo.action      strutsµÄaction°ü
-com.xjgzinfo.activiti    ²Ù×÷¹¤×÷Á÷ÒıÇæµÄ½Ó¿Ú°ü£¬·½·¨¶¼·â×°ÔÚActivitiManagerÀàÖĞ
-com.xjgzinfo.common      ¹«ÓÃÀà
-com.xjgzinfo.example     Ê¾ÀıÖĞÓÃµ½µÄ¼àÌıÆ÷
-com.xjgzinfo.service     ·şÎñÀà
-com.xjgzinfo.vo          Êı¾İ¿âvo¶ÔÏó
-com.xjgzinfo.test        ²âÊÔÀà£¬Ã»ÓĞÓÃ
-
-
-exampleFlow/exampleJsp   Ê¾ÀıµÄjspÒ³Ãæ
+ä»£ç åŒ…è¯´æ˜ï¼š
+com.xjgzinfo.action      strutsçš„actionåŒ…
+com.xjgzinfo.activiti    æ“ä½œå·¥ä½œæµå¼•æ“çš„æ¥å£åŒ…ï¼Œæ–¹æ³•éƒ½å°è£…åœ¨ActivitiManagerç±»ä¸­
+com.xjgzinfo.common      å…¬ç”¨ç±»
+com.xjgzinfo.example     ç¤ºä¾‹ä¸­ç”¨åˆ°çš„ç›‘å¬å™¨
+com.xjgzinfo.organizational   å‚ä¸è€…ç®¡ç†ç±»
+com.xjgzinfo.service     æœåŠ¡ç±»
+com.xjgzinfo.vo          æ•°æ®åº“voå¯¹è±¡
+com.xjgzinfo.test        æµ‹è¯•ç±»ï¼Œæ²¡æœ‰ç”¨
 
 
-´Ë¹¤³Ì»·¾³ËµÃ÷£ºoracle11GXE¡¢myeclipse10
+exampleFlow/exampleJsp   ç¤ºä¾‹çš„jspé¡µé¢
 
-ÓÃ»§£ºtest1/test2/test3/test4/test5   ÃÜÂë:8888
 
-----------------------------------Èç¹û»·¾³²»Ò»ÖÂ£¬ÓĞ¿ÉÄÜÊı¾İ¿â±íµ¼Èë²»È«£¬Èç¹û×Ô¼º²¿ÊğÁ÷³Ì£¬±íµ¥ÅäÖÃÈçÏÂ---------------------------------------------------
+db_backï¼šæ–‡ä»¶å¤¹ï¼šå·¥ç¨‹oracleæ•°æ®åº“æ–‡ä»¶ï¼ŒåŒ…æ‹¬oracle11gå¯¼å‡ºçš„å’Œoracle10gå¯¼å‡ºçš„
+tomcat-libï¼šå¾ˆå¤šæœ‹å‹å› ä¸ºç¯å¢ƒä¸ä¸€æ ·å¯¼å…¥å°‘jaråŒ…ï¼Œè¿™é‡Œç»™æˆ‘tomcatä¸‹èƒ½è¿è¡Œçš„æ‰€æœ‰jaråŒ…
+
+æ­¤å·¥ç¨‹ç¯å¢ƒè¯´æ˜ï¼šoracle11gXEã€myeclipse10.5
+
+ç”¨æˆ·ï¼štest1/test2/test3/test4/test5....test15   å¯†ç :8888
+
+----------------------------------å¦‚æœç¯å¢ƒä¸ä¸€è‡´ï¼Œæœ‰å¯èƒ½æ•°æ®åº“è¡¨å¯¼å…¥ä¸å…¨ï¼Œå¦‚æœè‡ªå·±éƒ¨ç½²æµç¨‹ï¼Œè¡¨å•é…ç½®å¦‚ä¸‹---------------------------------------------------
 example1:
 	usertask1:example_loadQjd
 	usertask2:example_loadQjd?type=update
 	usertask3:example_loadQjd
 	usertask4:example_loadQjd?type=update
 
-example2-example9µÄ½Úµã±íµ¥È«²¿ÊÇ:/exampleFlow/exampleJsp/exp2_fzptfz_complete.jsp
+example2-example9çš„èŠ‚ç‚¹è¡¨å•å…¨éƒ¨æ˜¯:/exampleFlow/exampleJsp/exp2_fzptfz_complete.jsp
 
 example10:
 	usertask1:/exampleFlow/exampleJsp/exp2_fzptfz_complete.jsp
